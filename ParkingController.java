@@ -14,11 +14,12 @@ public class ParkingController {
     //Métodos
 
     //Entrada
-    public void enter() {
-        if (remainingSpaces > 0) {
-            occupiedSpaces++;
-            remainingSpaces--;
-            System.out.println("Entrada liberada.");
+    public void enter(int qtd) {
+        System.out.println("Entrada liberada.");
+        System.out.println("Entrando " + qtd + " carros");
+        if (remainingSpaces > 0 && remainingSpaces > qtd) {
+            occupiedSpaces = occupiedSpaces + qtd;
+            remainingSpaces = remainingSpaces - qtd;
             System.out.println("Vagas ocupadas: " + occupiedSpaces);
             System.out.println("Vagas restantes: " + remainingSpaces);
         } else {
@@ -26,15 +27,16 @@ public class ParkingController {
         }
     }
     // Saída
-    public void exit() {
-        if (occupiedSpaces > 0) {
-            occupiedSpaces--;
-            remainingSpaces++;
-            System.out.println("Saída liberada.");
+    public void exit(int qtd) {
+        System.out.println("Saída liberada.");
+        System.out.println("Saindo " + qtd + " carros");
+        if (occupiedSpaces >= qtd) {
+            occupiedSpaces = occupiedSpaces -qtd;
+            remainingSpaces = remainingSpaces +qtd;
             System.out.println("Vagas ocupadas: " + occupiedSpaces);
             System.out.println("Vagas restantes: " + remainingSpaces);
         } else {
-            System.out.println("Estacionamento vazio.");
+            System.out.println("Quantidade de saida maior que os espaços ocupados");
         }
     }
 }
